@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EVI Electric</title>
+
+<style>
+body{
+font-family:Arial;
+margin:0;
+background:#f4f6f8;
+color:#111
+}
+.wrap{
+max-width:520px;
+margin:auto;
+padding:20px
+}
+.card{
+background:white;
+border-radius:16px;
+padding:18px;
+margin:12px 0;
+box-shadow:0 2px 10px #0001
+}
+input,button{
+width:100%;
+padding:12px;
+margin:7px 0;
+box-sizing:border-box;
+border-radius:10px;
+border:1px solid #ccc
+}
+button{
+background:#111;
+color:white;
+border:0
+}
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
+}
+.small{
+color:#666;
+font-size:13px
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<h1>⚡ EVI Electric</h1>
+
+<div class="card">
+<h2>Register</h2>
+<input id="name" placeholder="Name">
+<input id="mobile" placeholder="Mobile">
+<input id="password" type="password" placeholder="Password">
+<button onclick="register()">Create account</button>
+</div>
+
+<div class="card">
+<h2>Login</h2>
+<input id="lm" placeholder="Mobile">
+<input id="lp" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+</div>
+
+<div id="app" class="card" style="display:none">
+<h2>Dashboard</h2>
+
+<p>Welcome, <b id="uname"></b></p>
+
+<h3>Balance: ₹<span id="bal">0</span></h3>
+
+<div class="grid">
+<button onclick="showWithdraw()">Withdraw</button>
+<button onclick="alert('Payment gateway integration required')">
+Recharge
+</button>
+</div>
+
+<div id="withdraw" style="display:none">
+<input id="upi" placeholder="UPI ID">
+<input id="amount" type="number" placeholder="Amount">
+<button onclick="withdraw()">Submit withdrawal</button>
+</div>
+
+<p class="small">
+Starter backend stores data in memory for testing.
+Do not use this configuration for real-money production.
+</p>
+
+</div>
+
+<p id="msg"></p>
+
+</div>
+
+<script>
+let me=null;
+
+const $=id=>document.getElementById(id);
+
+function msg(x){
+$("msg").textContent=x
+}
+
+async function post(url,data){
+const r=await fetch(url,{
+meth
